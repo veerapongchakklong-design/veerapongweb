@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>กิจวัตรประจำวัน - หน้า 3</title>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+    body { background-color:#111; color:white; text-align:center; font-family:'Kanit', sans-serif; padding:20px; }
+    .container { max-width:900px; margin:auto; }
+    h1 { color:#FFD700; margin-bottom: 5px; }
+    h2 { color:#00FFFF; margin-top:30px; margin-bottom: 20px; }
+    hr { width:70%; border:1px solid #444; margin: 20px auto; }
+
+    /* สไตล์ตาราง */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #222;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 255, 153, 0.1);
+    }
+    th {
+        background-color: #00FFFF;
+        color: black;
+        padding: 15px;
+        font-size: 20px;
+    }
+    td {
+        padding: 12px;
+        border-bottom: 1px solid #333;
+        font-size: 18px;
+    }
+    tr:hover {
+        background-color: #333;
+    }
+    .time-col { color: #FFD700; font-weight: bold; width: 25%; }
+
+    /* ปุ่มนำทาง */
+    .nav-box { margin-top: 40px; display: flex; justify-content: center; gap: 15px; }
+    .btn-nav { background-color: #00CCFF; color: black; padding: 12px 25px; border-radius: 10px; font-weight: bold; border: 2px solid white; text-decoration: none; transition: 0.3s; }
+    .btn-nav:hover { background-color: white; box-shadow: 0 0 15px #00CCFF; }
+    .btn-home { background-color: #00FF99; }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>ตารางกิจวัตรประจำวัน</h1>
+    <p style="color: #aaa;">วีรพงษ์ จักร์คร่อง - วิทยาลัยเทคนิคเชียงใหม่</p>
+    <hr>
+    
+    <h2>📅 กิจกรรมในวันเรียนปกติ</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>เวลา</th>
+                <th>กิจกรรม</th>
+                <th>หมายเหตุ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="time-col">06:30 - 07:30</td>
+                <td>ตื่นนอน / อาบน้ำแต่งตัว</td>
+                <td>เตรียมตัวไปเรียน</td>
+            </tr>
+            <tr>
+                <td class="time-col">08:00 - 16:30</td>
+                <td>เข้าแถว / เรียนที่วิทยาลัยเทคนิคเชียงใหม่</td>
+                <td>ตั้งใจเรียนวิชาชีพ</td>
+            </tr>
+            <tr>
+                <td class="time-col">17:00 - 18:30</td>
+                <td>กลับถึงบ้าน / ฝึกทำอาหาร</td>
+                <td>ฝึกทักษะเชฟมืออาชีพ</td>
+            </tr>
+            <tr>
+                <td class="time-col">18:30 - 19:30</td>
+                <td>รับประทานอาหารเย็น</td>
+                <td>พักผ่อนกับครอบครัว</td>
+            </tr>
+            <tr>
+                <td class="time-col">19:30 - 21:00</td>
+                <td>ทำการบ้าน / ฝึกเขียนโปรแกรม (HTML/CSS)</td>
+                <td>พัฒนาทักษะ Web Dev</td>
+            </tr>
+            <tr>
+                <td class="time-col">21:00 - 22:30</td>
+                <td>เล่นเกม / ฟังเพลง</td>
+                <td>คลายเครียดก่อนนอน</td>
+            </tr>
+            <tr>
+                <td class="time-col">23:00</td>
+                <td>นอนหลับพักผ่อน</td>
+                <td>พักผ่อนให้ครบ 8 ชม.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+    
+    <div class="nav-box">
+        <a href="page2.html" class="btn-nav">⬅️ กลับหน้า 2</a>
+        <a href="index.html" class="btn-nav btn-home">กลับหน้าแรก 🏠</a>
+    </div>
+</div>
+</body>
+</html>
