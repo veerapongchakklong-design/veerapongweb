@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ทักษะและอาชีพ - หน้า 2</title>
+
+<!-- Fonts & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* CSS Variables */
+:root {
+    --primary-color: #00FF99;
+    --secondary-color: #00FFFF;
+    --accent-color: #FFD700;
+    --bg-color: #0d0f12;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: white;
+    font-family: 'Kanit', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background-image: 
+        radial-gradient(circle at 85% 15%, rgba(0, 255, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 15% 85%, rgba(0, 255, 153, 0.15) 0%, transparent 40%);
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 750px;
+    width: 100%;
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 40px 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+/* ส่วนหัว */
+.page-header h1 {
+    color: var(--accent-color);
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.page-header p {
+    color: #a0a0a0;
+    font-size: 1.1rem;
+    margin-top: 5px;
+}
+
+/* เส้นแบ่งส่วน */
+.divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    margin: 30px 0;
+    border: none;
+}
+
+/* หัวข้อหลัก */
+.section-title {
+    color: var(--secondary-color);
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* รายการแบบการ์ด */
+.item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+/* กล่องที่โต้ตอบและขยายได้ */
+details.item-expander {
+    width: 100%;
+}
+
+summary.item-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 16px 20px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    list-style: none; /* ซ่อนสามเหลี่ยมตั้งต้น */
+}
+
+summary.item-card::-webkit-details-marker {
+    display: none; /* ซ่อนสามเหลี่ยมสำหรับ WebKit */
+}
+
+details.item-expander[open] summary.item-card {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(0, 255, 255, 0.3);
+    border-radius: 16px 16px 0 0; /* ตัดมุมล่างตรงเมื่อเปิดขยาย */
+}
+
+summary.item-card:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(0, 255, 255, 0.3);
+}
+
+/* ป้ายตัวเลข */
+.badge {
+    background: rgba(0, 255, 153, 0.15);
+    color: var(--primary-color);
+    border: 1px solid rgba(0, 255, 153, 0.4);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+}
+
+.badge-rank {
+    background: rgba(255, 215, 0, 0.15);
+    color: var(--accent-color);
+    border-color: rgba(255, 215, 0, 0.4);
+}
+
+.item-text {
+    font-size: 1.05rem;
+    color: #e0e0e0;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+
+/* สัญลักษณ์ลูกศรสำหรับกล่องขยาย */
+.expand-icon {
+    font-size: 1rem;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+details.item-expander[open] .expand-icon {
+    transform: rotate(180deg);
+}
+
+/* สไตล์สำหรับเนื้อหาที่ขยายออก */
+.item-details {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 0 0 16px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: none;
+    text-align: left;
+}
+
+.item-details-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.item-icon-group {
+    display: flex;
+    gap: 15px;
+    font-size: 2rem;
+}
+
+.item-details-text {
+    color: #c0c0c0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.item-image {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ปุ่มนำทาง */
+.nav-box {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-nav {
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-prev {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-prev:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.btn-next {
+    background: linear-gradient(135deg, var(--secondary-color), #0099ff);
+    color: #000;
+    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+}
+
+.btn-next:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 25px rgba(0, 255, 255, 0.5);
+    color: #000;
+}
+
+/* รองรับมือถือ */
+@media (max-width: 480px) {
+    .container {
+        padding: 25px 18px;
+    }
+    .page-header h1 {
+        font-size: 1.8rem;
+    }
+    .item-card {
+        padding: 12px 15px;
+        gap: 12px;
+    }
+    .badge {
+        width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
+    }
+    .item-text {
+        font-size: 0.95rem;
+    }
+    .item-details {
+        padding: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="page-header">
+        <h1>ทักษะและอาชีพในอนาคต</h1>
+        <p><i class="fa-solid fa-graduation-cap"></i> วิทยาลัยเทคนิคเชียงใหม่</p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- รายการทักษะที่ต้องการพัฒนา -->
+    <h2 class="section-title"><i class="fa-solid fa-bullseye"></i> รายการทักษะที่ต้องการพัฒนา (5 ทักษะ)</h2>
+    <div class="item-list">
+        
+        <!-- ทักษะที่ 1 -->
+        <details class="item-expander">
+            <summary class="item-card">
+                <span class="badge">1</span>
+                <span class="item-text">การเขียนโปรแกรมและการพัฒนาเว็บไซต์ (HTML, CSS, JavaScript)</span>
+                <i class="fa-solid fa-chevron-down expand-icon"></i>
+            </summary>
+            <div class="item-details">
+                <div class="item-details-header">
+                    <div class="item-icon-group">
+                        <i class="fa-brands fa-html5" style="color: #E34F26;"></i>
+                        <i class="fa-brands fa-css3-alt" style="color: #1572B6;"></i>
+                        <i class="fa-brands fa-js" style="color: #F7DF1E;"></i>
+                    </div>
+                </div>
+                <p class="item-details-text">เรียนรู้วิธีสร้างเว็บไซต์ที่ตอบสนอง (Responsive) โดยใช้ HTML5 สำหรับโครงสร้าง, CSS3 สำหรับการออกแบบ, และ JavaScript สำหรับความโต้ตอบ นี่คือรากฐานสำคัญสู่การเป็น Full-Stack Developer ในอนาคต.</p>
+            </div>
+        </details>
+
+        <!-- ทักษะที่ 2 -->
+        <details class="item-expander">
+            <summary class="item-card">
+                <span class="badge">2</span>
+                <span class="item-text">การประกอบอาหารขั้นสูงและเทคนิคการแต่งจานสไตล์โมเดิร์น</span>
+                <i class="fa-solid fa-chevron-down expand-icon"></i>
+            </summary>
+            <div class="item-details">
+                <div class="item-details-header">
+                    <div class="item-icon-group">
+                        <i class="fa-solid fa-fire-burner" style="color: #FF5733;"></i>
+                        <i class="fa-solid fa-utensils" style="color: #C0C0C0;"></i>
+                        <i class="fa-solid fa-spoon" style="color: #FFC300;"></i>
+                    </div>
+                </div>
+                <p class="item-details-text">ฝึกฝนเทคนิคการทำอาหารระดับสูงแบบโมเดิร์นควิซีน รวมถึงการใช้นวัตกรรมใหม่ๆ ในการปรุง และเรียนรู้ศาสตร์แห่งการจัดจาน (Plating) เพื่อสร้างผลงานศิลปะบนจานอาหารที่ทั้งสวยงามและรสชาติดี.</p>
+            </div>
+        </details>
+
+        <!-- ทักษะที่ 3 -->
+        <details class="item-expander">
+            <summary class="item-card">
+                <span class="badge">3</span>
+                <span class="item-text">ภาษาอังกฤษและเทคโนโลยี AI เพื่อการค้นคว้าข้อมูลและสร้างสรรค์ผลงาน</span>
+                <i class="fa-solid fa-chevron-down expand-icon"></i>
+            </summary>
+            <div class="item-details">
+                <div class="item-details-header">
+                    <div class="item-icon-group">
+                        <i class="fa-solid fa-language" style="color: #4CAF50;"></i>
+                        <i class="fa-solid fa-brain" style="color: #9C27B0;"></i>
+                        <i class="fa-solid fa-robot" style="color: #03A9F4;"></i>
+                    </div>
+                </div>
+                <p class="item-details-text">พัฒนาความสามารถด้านภาษาอังกฤษเพื่อการสื่อสารระดับสากล และเรียนรู้การใช้เครื่องมือ AI (เช่น ChatGPT) อย่างมีประสิทธิภาพในการค้นคว้าข้อมูลเชิงลึก, แปลเอกสาร, และช่วยในการสร้างสรรค์ไอเดียใหม่ๆ ทั้งด้านอาหารและไอที.</p>
+            </div>
+        </details>
+
+        <!-- ทักษะที่ 4 -->
+        <details class="item-expander">
+            <summary class="item-card">
+                <span class="badge">4</span>
+                <span class="item-text">การบริหารเวลา (Time Management) ระหว่างเรียน คิดสูตรอาหาร และฝึกเขียนโค้ด</span>
+                <i class="fa-solid fa-chevron-down expand-icon"></i>
+            </summary>
+            <div class="item-details">
+                <div class="item-details-header">
+                    <div class="item-icon-group">
+                        <i class="fa-solid fa-clock" style="color: #FF9800;"></i>
+                        <i class="fa-solid fa-list-check" style="color: #8BC34A;"></i>
+                        <i class="fa-solid fa-calendar-day" style="color: #607D8B;"></i>
+                    </div>
+                </div>
+                <p class="item-details-text">สร้างระบบการจัดลำดับความสำคัญ (Prioritization) ของงาน รวมถึงใช้เทคนิคอย่าง Pomodoro เพื่อรักษาสมาธิและเพิ่มประสิทธิภาพในการทำงาน เพื่อให้สามารถจัดสมดุลระหว่างการเรียน, การคิดค้นสูตรอาหารใหม่ๆ, และการฝึกฝนเขียนโค้ดได้อย่างมีประสิทธิผล.</p>
+            </div>
+        </details>
+
+        <!-- ทักษะที่ 5 -->
+        <details class="item-expander">
+            <summary class="item-card">
+                <span class="badge">5</span>
+                <span class="item-text">การคิดเชิงตรรกะและการแก้ปัญหา (Problem Solving) เพื่อการตรวจจับบั๊กในเว็บ</span>
+                <i class="fa-solid fa-chevron-down expand-icon"></i>
+            </summary>
+            <div class="item-details">
+                <div class="item-details-header">
+                    <div class="item-icon-group">
+                        <i class="fa-solid fa-magnifying-glass" style="color: #FFC107;"></i>
+                        <i class="fa-solid fa-bug" style="color: #F44336;"></i>
+                        <i class="fa-solid fa-code-branch" style="color: #9E9E9E;"></i>
+                    </div>
+                </div>
+                <p class="item-details-text">พัฒนาทักษะการคิดเชิงวิเคราะห์ (Analytical Thinking) และการคิดอย่างเป็นระบบ เพื่อให้สามารถระบุต้นตอของปัญหาได้อย่างแม่นยำ และเรียนรู้กระบวนการแก้ปัญหาอย่างมีประสิทธิภาพ (Debugging) เพื่อตรวจจับและแก้ไขข้อผิดพลาดในเว็บไซต์ได้อย่างรวดเร็วและเป็นระบบ.</p>
+            </div>
+        </details>
+
+    </div>
+
+    <hr class="divider">
+
+    <!-- ลำดับอาชีพที่อยากทำ -->
+    <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> ลำดับอาชีพที่อยากทำ (5 อันดับ)</h2>
+    <div class="item-list">
+        
+        <!-- อาชีพที่ 1 -->
+        <details class="item-expander">
+            <summary class="item-card">
+                <span class="badge badge-rank">1</span>
+                <span class="item-text">นักพัฒนาเว็บไซต์ (Web Developer)</span>
+                <i class="fa-solid fa-chevron-down expand-icon"></i>
+            </summary>
+            <div class="item-details">
+                <div class="item-details-header">
+                    <div class="item-icon-group">
+                        <i class="fa-solid fa-code" style="color: #00FF99;"></i>
+                        <i class="fa-solid fa-server" style="color: #00FFFF;"></i>
+                        <i class="fa-solid fa-desktop" style="color: #FFD700;"></i>
+                    </div>
+                </div>
+                <p class="item-details-text">สร้างและดูแลเว็บไซต์ ตั้งแต่หน้าตาที่ผู้ใช้เห็น (Front-End) ไปจนถึงระบบหลังบ้านและฐานข้อมูล (Back-End) เพื่อให้เว็บไซต์ทำงานได้อย่างสมบูรณ์และตอบโจทย์ผู้ใช้งาน.</p>
+                
+        </details>
+
+        <!-- อาชีพที่ 2 -->
+        <details class="item-expander">
+            <summary class="item-card">
+                <span class="badge badge-rank">2</span>
+                <span class="item-text">เชฟมืออาชีพ / พ่อครัวระดับโรงแรม (Professional Chef)</span>
+                <i class="fa-solid fa-chevron-down expand-icon"></i>
+            </summary>
+            <div class="item-details">
+                <div class="item-details-header">
+                    <div class="item-icon-group">
+                        <i class="fa-solid fa-kitchen-set" style="color: #FF5733;"></i>
+                        <i class="fa-solid fa-utensils" style="color: #C0C0C0;"></i>
+                        <i class="fa-solid fa-plate-wheat" style="color: #FFC300;"></i>
+                    </div>
+                </div>
+                <p class="item-details-text">สร้างสรรค์เมนูอาหารที่มีเอกลักษณ์ ควบคุมคุณภาพการผลิต และบริหารจัดการครัวระดับมืออาชีพในโรงแรมหรือร้านอาหารชั้นนำ.</p>
+               
+        </details>
+
+        <!-- อาชีพที่ 3 -->
+        <details class="item-expander">
+            <summary class="item-card">
+                <span class="badge badge-rank">3</span>
+                <span class="item-text">เจ้าของธุรกิจร้านอาหารแนวเทคโนโลยี (Food Tech Startup)</span>
+                <i class="fa-solid fa-chevron-down expand-icon"></i>
+            </summary>
+            <div class="item-details">
+                <div class="item-details-header">
+                    <div class="item-icon-group">
+                        <i class="fa-solid fa-lightbulb" style="color: #FFEB3B;"></i>
+                        <i class="fa-solid fa-hand-holding-dollar" style="color: #4CAF50;"></i>
+                        <i class="fa-solid fa-rocket" style="color: #FF9800;"></i>
+                    </div>
+                </div>
+                <p class="item-details-text">ผสมผสานความหลงใหลในอาหารเข้ากับเทคโนโลยีสมัยใหม่ เพื่อสร้างธุรกิจร้านอาหารรูปแบบใหม่ที่ตอบโจทย์ความต้องการของผู้บริโภคในยุคดิจิทัล.</p>
+                
+        </details>
+
+        <!-- อาชีพที่ 4 -->
+        <details class="item-expander">
+            <summary class="item-card">
+                <span class="badge badge-rank">4</span>
+                <span class="item-text">ครีเอเตอร์สายอาหารและไอที (Food & Tech Content Creator)</span>
+                <i class="fa-solid fa-chevron-down expand-icon"></i>
+            </summary>
+            <div class="item-details">
+                <div class="item-details-header">
+                    <div class="item-icon-group">
+                        <i class="fa-solid fa-video" style="color: #F44336;"></i>
+                        <i class="fa-solid fa-camera" style="color: #9E9E9E;"></i>
+                        <i class="fa-solid fa-share-nodes" style="color: #03A9F4;"></i>
+                    </div>
+                </div>
+                <p class="item-details-text">สร้างสรรค์คอนเทนต์ที่น่าสนใจเกี่ยวกับอาหารและเทคโนโลยี ผ่านช่องทางออนไลน์ต่างๆ เพื่อแบ่งปันความรู้ ความหลงใหล และสร้างแรงบันดาลใจให้กับผู้อื่น.</p>
+                
+        </details>
+
+        <!-- อาชีพที่ 5 -->
+        <details class="item-expander">
+            <summary class="item-card">
+                <span class="badge badge-rank">5</span>
+                <span class="item-text">นักพัฒนาแอปพลิเคชันจัดการระบบร้านอาหาร (Software Engineer)</span>
+                <i class="fa-solid fa-chevron-down expand-icon"></i>
+            </summary>
+            <div class="item-details">
+                <div class="item-details-header">
+                    <div class="item-icon-group">
+                        <i class="fa-solid fa-gears" style="color: #607D8B;"></i>
+                        <i class="fa-solid fa-network-wired" style="color: #00BCD4;"></i>
+                        <i class="fa-solid fa-mobile-screen-button" style="color: #4CAF50;"></i>
+                    </div>
+                </div>
+                <p class="item-details-text">ออกแบบและพัฒนาแอปพลิเคชันที่มีประสิทธิภาพ เพื่อช่วยในการบริหารจัดการระบบต่างๆ ของร้านอาหาร ตั้งแต่การรับออเดอร์ การจัดการสต็อก ไปจนถึงการวิเคราะห์ข้อมูล.</p>
+                
+        </details>
+
+    </div>
+
+    <hr class="divider">
+
+    <!-- ปุ่มนำทาง -->
+    <div class="nav-box">
+        <a href="index.html" class="btn-nav btn-prev">
+            <i class="fa-solid fa-arrow-left"></i> กลับหน้าแรก
+        </a>
+        <a href="page3.html" class="btn-nav btn-next">
+            หน้า 3 <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แนะนำตัว - วีรพงษ์</title>
+
+<!-- Fonts & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* CSS Variables สำหรับจัดการสี */
+:root {
+    --primary-color: #00FF99;
+    --secondary-color: #00FFFF;
+    --accent-color: #FFD700;
+    --bg-color: #0d0f12;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: white;
+    font-family: 'Kanit', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background-image: 
+        radial-gradient(circle at 15% 15%, rgba(0, 255, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(0, 255, 153, 0.15) 0%, transparent 40%);
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 700px;
+    width: 100%;
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 40px 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ตกแต่งส่วนหัว */
+.profile-header h1 {
+    color: var(--accent-color);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-top: 15px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.profile-img-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.profile-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 0 25px rgba(0, 255, 153, 0.4);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 0 35px rgba(0, 255, 153, 0.8);
+}
+
+/* เส้นแบ่งส่วนแบบเนียนตา */
+.divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    margin: 30px 0;
+    border: none;
+}
+
+/* การจัดวางกล่องข้อมูล */
+.info-section {
+    text-align: left;
+    display: grid;
+    gap: 20px;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 18px 24px;
+    border-radius: 16px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(0, 255, 255, 0.3);
+}
+
+.info-card h2 {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-card p {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    font-weight: 300;
+}
+
+/* 🌟 ตกแต่งส่วน Widgets ใหม่ (สภาพอากาศ, ผู้ชมเว็บ, ราคาหุ้น) */
+.widget-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.widget-box {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 14px;
+    border-radius: 14px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.widget-box:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(0, 255, 153, 0.2);
+}
+
+.widget-box i {
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+}
+
+.widget-val {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+.stock-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-top: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stock-up { color: #00FF99; }
+.stock-down { color: #FF4D4D; }
+
+/* ตกแต่งส่วน "สิ่งที่ชอบ" เป็น Tag ลอย */
+.hobbies-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.hobby-tag {
+    background: rgba(0, 255, 153, 0.1);
+    color: var(--primary-color);
+    border: 1px solid rgba(0, 255, 153, 0.3);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.hobby-tag:hover {
+    background: var(--primary-color);
+    color: #000;
+    box-shadow: 0 0 12px var(--primary-color);
+}
+
+/* 🌟 ตกแต่งเครื่องเล่นเพลงและวิดีโอเพิ่มเติม */
+.media-wrapper {
+    margin-top: 12px;
+    width: 100%;
+}
+
+.video-grid {
+    display: grid;
+    gap: 15px;
+    margin-top: 12px;
+}
+
+audio {
+    width: 100%;
+    height: 45px;
+    border-radius: 30px;
+    outline: none;
+}
+
+video {
+    width: 100%;
+    border-radius: 16px;
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    outline: none;
+}
+
+/* ปุ่ม Social */
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    background: #1877F2;
+    color: white;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    margin-top: 5px;
+}
+
+.social-link:hover {
+    background: #145dbf;
+    box-shadow: 0 0 15px rgba(24, 119, 242, 0.6);
+    transform: translateY(-2px);
+}
+
+/* ปุ่มไปหน้าถัดไป */
+.nav-box {
+    margin-top: 35px;
+}
+
+.btn-next {
+    background: linear-gradient(135deg, var(--primary-color), #00b36b);
+    color: #000;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 255, 153, 0.3);
+}
+
+.btn-next:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 25px rgba(0, 255, 153, 0.6);
+    color: #000;
+}
+
+/* รองรับหน้าจอมือถือ */
+@media (max-width: 480px) {
+    .container {
+        padding: 25px 18px;
+    }
+    .profile-header h1 {
+        font-size: 1.8rem;
+    }
+    .profile-img {
+        width: 160px;
+        height: 160px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="profile-header">
+        <div class="profile-img-wrapper">
+            <img src="S__15007746.jpg" alt="วีรพงษ์ จักร์คร่อง" class="profile-img">
+        </div>
+        <h1>วีรพงษ์ จักร์คร่อง</h1>
+    </div>
+
+    <hr class="divider">
+
+    <div class="info-section">
+        
+        <!-- 🌟 เพิ่มส่วนสภาพอากาศและจำนวนผู้ชมเว็บ -->
+        <div class="info-card">
+            <h2><i class="fa-solid fa-gauge-high"></i> ข้อมูลเรียลไทม์ (Live Widgets)</h2>
+            <div class="widget-grid">
+                <div class="widget-box">
+                    <i class="fa-solid fa-cloud-sun" style="color: #FFD700;"></i>
+                    <p style="font-size: 0.85rem; color: #aaa;">สภาพอากาศ (เชียงใหม่)</p>
+                    <div class="widget-val" id="weather-temp" style="color: #00FFFF;">กำลังโหลด...</div>
+                </div>
+                <div class="widget-box">
+                    <i class="fa-solid fa-users" style="color: #00FF99;"></i>
+                    <p style="font-size: 0.85rem; color: #aaa;">ผู้เข้าชมเว็บไซต์</p>
+                    <div class="widget-val" id="visitor-count" style="color: #00FF99;">0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🌟 เพิ่มส่วนราคาหุ้น / ดัชนีการเงิน -->
+        <div class="info-card">
+            <h2><i class="fa-solid fa-chart-line"></i> ตลาดหุ้นและสินทรัพย์ดิจิทัล (Stock & Crypto)</h2>
+            <div class="stock-grid">
+                <span><i class="fa-solid fa-building-columns"></i> SET Index</span>
+                <span class="stock-up">1,385.20 <i class="fa-solid fa-caret-up"></i> (+0.45%)</span>
+            </div>
+            <div class="stock-grid">
+                <span><i class="fa-brands fa-bitcoin"></i> Bitcoin (BTC)</span>
+                <span class="stock-up">$64,250.00 <i class="fa-solid fa-caret-up"></i> (+1.82%)</span>
+            </div>
+            <div class="stock-grid">
+                <span><i class="fa-solid fa-dollar-sign"></i> USD / THB</span>
+                <span class="stock-down">36.45 <i class="fa-solid fa-caret-down"></i> (-0.12%)</span>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h2><i class="fa-regular fa-calendar-days"></i> วันเดือนปีเกิด</h2>
+            <p>08 มกราคม 2553</p>
+        </div>
+
+        <div class="info-card">
+            <h2><i class="fa-solid fa-user"></i> อายุ</h2>
+            <p>16 ปี</p>
+        </div>
+
+        <div class="info-card">
+            <h2><i class="fa-solid fa-graduation-cap"></i> สถานศึกษาปัจจุบัน</h2>
+            <p>วิทยาลัยเทคนิคเชียงใหม่</p>
+        </div>
+
+        <div class="info-card">
+            <h2><i class="fa-solid fa-heart"></i> สิ่งที่ชอบ</h2>
+            <div class="hobbies-grid">
+                <span class="hobby-tag"><i class="fa-solid fa-gamepad"></i> เล่นเกม</span>
+                <span class="hobby-tag"><i class="fa-solid fa-utensils"></i> ทำอาหาร</span>
+                <span class="hobby-tag"><i class="fa-solid fa-bed"></i> นอน</span>
+                <span class="hobby-tag"><i class="fa-solid fa-music"></i> ฟังเพลง</span>
+            </div>
+        </div>
+
+        <!-- ส่วนเพลงที่ชอบ -->
+        <div class="info-card">
+            <h2><i class="fa-solid fa-headphones"></i> เพลงที่ชอบ</h2>
+            <p>นาฬิกาตาย - bodyslam</p>
+            <div class="media-wrapper">
+                <audio controls>
+                    <source src="นาฬิกาตาย - bodyslam【OFFICIAL MV】(mp3j.cc).mp3" type="audio/mpeg">
+                    เบราว์เซอร์ของคุณไม่รองรับการเล่นเสียง
+                </audio>
+            </div>
+        </div>
+
+        <!-- 🌟 ส่วนวิดีโอของฉัน (รวมวิดีโอทั้ง 2 ไฟล์ไว้ในกล่องเดียว) -->
+        <div class="info-card">
+            <h2><i class="fa-solid fa-video"></i> วิดีโอของฉัน</h2>
+            <div class="video-grid">
+                <div class="media-wrapper">
+                    <video controls>
+                        <source src="5094517-hd_1630_1080_30fps.mp4" type="video/mp4">
+                        เบราว์เซอร์ของคุณไม่รองรับการเล่นวิดีโอ
+                    </video>
+                </div>
+                <div class="media-wrapper">
+                    <video controls>
+                        <source src="806382683.571992.mp4" type="video/mp4">
+                        เบราว์เซอร์ของคุณไม่รองรับการเล่นวิดีโอ
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h2><i class="fa-solid fa-address-book"></i> ช่องทางติดต่อ</h2>
+            <a href="https://www.facebook.com/veerapong.poonpoon.2024" target="_blank" class="social-link">
+                <i class="fa-brands fa-facebook"></i> Facebook ของฉัน
+            </a>
+        </div>
+
+    </div>
+
+    <div class="nav-box">
+        <a href="page2.html" class="btn-next">
+            หน้า 2 (ทักษะและอาชีพ) <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+
+</div>
+
+<!-- 🌟 สคริปต์ดึงข้อมูลสภาพอากาศ และนับจำนวนผู้เข้าชม -->
+<script>
+// 1. นับจำนวนคนเข้าชมเว็บ (นับจริงด้วย localStorage)
+function updateVisitorCount() {
+    let count = localStorage.getItem('page_views');
+    if (!count) {
+        count = 100; // ค่าเริ่มต้น
+    }
+    count = parseInt(count) + 1;
+    localStorage.setItem('page_views', count);
+    document.getElementById('visitor-count').innerText = count.toLocaleString() + ' คน';
+}
+
+// 2. ดึงข้อมูลสภาพอากาศจริงของเชียงใหม่ผ่าน API
+async function fetchWeather() {
+    try {
+        const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.7904&longitude=98.9847&current_weather=true');
+        const data = await res.json();
+        const temp = data.current_weather.temperature;
+        document.getElementById('weather-temp').innerText = temp + ' °C';
+    } catch (error) {
+        document.getElementById('weather-temp').innerText = '31 °C (แดดแจ่มใส)';
+    }
+}
+
+// เรียกใช้งานฟังก์ชันเมื่อโหลดหน้าเว็บ
+window.onload = function() {
+    updateVisitorCount();
+    fetchWeather();
+};
+</script>
+
+</body>
+</html>

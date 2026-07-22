@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>กิจวัตรประจำวัน - หน้า 3</title>
+
+<!-- Fonts & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* CSS Variables สำหรับจัดการสี */
+:root {
+    --primary-color: #00FF99;
+    --secondary-color: #00FFFF;
+    --accent-color: #FFD700;
+    --bg-color: #0d0f12;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: white;
+    font-family: 'Kanit', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background-image: 
+        radial-gradient(circle at 15% 15%, rgba(0, 255, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(0, 255, 153, 0.15) 0%, transparent 40%);
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 850px;
+    width: 100%;
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 40px 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ส่วนหัว */
+.header-section h1 {
+    color: var(--accent-color);
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.header-section p {
+    color: #a0a0a0;
+    font-weight: 300;
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+.sub-title {
+    color: var(--secondary-color);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* เส้นแบ่งส่วน */
+.divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    margin: 25px 0;
+    border: none;
+}
+
+/* 🌟 สไตล์ตารางสุดล้ำ (Glassmorphism Table) */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+th {
+    background: rgba(0, 255, 255, 0.1);
+    color: var(--secondary-color);
+    padding: 16px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+td {
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 1rem;
+    color: #e0e0e0;
+    font-weight: 300;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect ตารางขยาย มิติแสง */
+tr {
+    transition: all 0.3s ease;
+}
+
+tr:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: scale(1.01);
+}
+
+tr:hover td {
+    color: #fff;
+}
+
+/* ป้ายเวลาเรืองแสง */
+.time-badge {
+    display: inline-block;
+    background: rgba(255, 215, 0, 0.1);
+    color: var(--accent-color);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.1);
+}
+
+/* ป้ายสถานะ/หมวดหมู่ */
+.category-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #bbb;
+}
+
+.tag-study { border-left: 3px solid #00FFFF; color: #00FFFF; }
+.tag-hobby { border-left: 3px solid #00FF99; color: #00FF99; }
+.tag-rest { border-left: 3px solid #FF9900; color: #FF9900; }
+
+/* 🌟 ปุ่มนำทาง */
+.nav-box {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-nav {
+    padding: 12px 26px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-prev {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-prev:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.btn-home {
+    background: linear-gradient(135deg, var(--primary-color), #00b36b);
+    color: #000;
+    box-shadow: 0 4px 15px rgba(0, 255, 153, 0.3);
+}
+
+.btn-home:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 255, 153, 0.6);
+    color: #000;
+}
+
+/* รองรับหน้าจอมือถือ */
+@media (max-width: 600px) {
+    .container {
+        padding: 25px 15px;
+    }
+    .header-section h1 {
+        font-size: 1.7rem;
+    }
+    th, td {
+        padding: 12px 10px;
+        font-size: 0.9rem;
+    }
+    .time-badge {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    
+    <div class="header-section">
+        <h1><i class="fa-solid fa-calendar-check"></i> กิจวัตรประจำวัน</h1>
+        <p>วีรพงษ์ จักร์คร่อง - วิทยาลัยเทคนิคเชียงใหม่</p>
+    </div>
+
+    <hr class="divider">
+
+    <div class="sub-title">
+        <i class="fa-regular fa-clock"></i> กิจกรรมในวันเรียนปกติ
+    </div>
+
+    <!-- ตาราง Glassmorphism -->
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th><i class="fa-solid fa-hourglass-half"></i> เวลา</th>
+                    <th><i class="fa-solid fa-list-check"></i> กิจกรรม</th>
+                    <th><i class="fa-solid fa-comment-dots"></i> หมายเหตุ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="time-badge">06:30 - 07:30</span></td>
+                    <td>ตื่นนอน / อาบน้ำแต่งตัว</td>
+                    <td><span class="category-tag tag-rest"><i class="fa-solid fa-sun"></i> เตรียมตัวไปเรียน</span></td>
+                </tr>
+                <tr>
+                    <td><span class="time-badge">08:00 - 16:30</span></td>
+                    <td>เข้าแถว / เรียนที่วิทยาลัยเทคนิคเชียงใหม่</td>
+                    <td><span class="category-tag tag-study"><i class="fa-solid fa-book"></i> ตั้งใจเรียนวิชาชีพ</span></td>
+                </tr>
+                <tr>
+                    <td><span class="time-badge">17:00 - 18:30</span></td>
+                    <td>กลับถึงบ้าน / ฝึกทำอาหาร</td>
+                    <td><span class="category-tag tag-hobby"><i class="fa-solid fa-utensils"></i> ฝึกทักษะเชฟมืออาชีพ</span></td>
+                </tr>
+                <tr>
+                    <td><span class="time-badge">18:30 - 19:30</span></td>
+                    <td>รับประทานอาหารเย็น</td>
+                    <td><span class="category-tag tag-rest"><i class="fa-solid fa-house-user"></i> พักผ่อนกับครอบครัว</span></td>
+                </tr>
+                <tr>
+                    <td><span class="time-badge">19:30 - 21:00</span></td>
+                    <td>ทำการบ้าน / ฝึกเขียนโปรแกรม (HTML/CSS)</td>
+                    <td><span class="category-tag tag-study"><i class="fa-solid fa-code"></i> พัฒนาทักษะ Web Dev</span></td>
+                </tr>
+                <tr>
+                    <td><span class="time-badge">21:00 - 22:30</span></td>
+                    <td>เล่นเกม / ฟังเพลง</td>
+                    <td><span class="category-tag tag-hobby"><i class="fa-solid fa-gamepad"></i> คลายเครียดก่อนนอน</span></td>
+                </tr>
+                <tr>
+                    <td><span class="time-badge">23:00</span></td>
+                    <td>นอนหลับพักผ่อน</td>
+                    <td><span class="category-tag tag-rest"><i class="fa-solid fa-bed"></i> พักผ่อนให้ครบ 8 ชม.</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr class="divider">
+
+    <div class="nav-box">
+        <a href="page2.html" class="btn-nav btn-prev">
+            <i class="fa-solid fa-arrow-left"></i> ย้อนกลับหน้า 2
+        </a>
+        <a href="index.html" class="btn-nav btn-home">
+            <i class="fa-solid fa-house"></i> กลับหน้าแรก
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>
