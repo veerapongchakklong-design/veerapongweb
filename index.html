@@ -312,7 +312,7 @@ video {
 
     <div class="info-section">
         
-        <!-- 🌟 เพิ่มส่วนสภาพอากาศและจำนวนผู้ชมเว็บ -->
+        <!-- 🌟 ส่วนสภาพอากาศและจำนวนผู้ชมเว็บ -->
         <div class="info-card">
             <h2><i class="fa-solid fa-gauge-high"></i> ข้อมูลเรียลไทม์ (Live Widgets)</h2>
             <div class="widget-grid">
@@ -324,12 +324,12 @@ video {
                 <div class="widget-box">
                     <i class="fa-solid fa-users" style="color: #00FF99;"></i>
                     <p style="font-size: 0.85rem; color: #aaa;">ผู้เข้าชมเว็บไซต์</p>
-                    <div class="widget-val" id="visitor-count" style="color: #00FF99;">0</div>
+                    <div class="widget-val" id="visitor-count" style="color: #00FF99;">0 คน</div>
                 </div>
             </div>
         </div>
 
-        <!-- 🌟 เพิ่มส่วนราคาหุ้น / ดัชนีการเงิน -->
+        <!-- 🌟 ส่วนราคาหุ้น / ดัชนีการเงิน -->
         <div class="info-card">
             <h2><i class="fa-solid fa-chart-line"></i> ตลาดหุ้นและสินทรัพย์ดิจิทัล (Stock & Crypto)</h2>
             <div class="stock-grid">
@@ -383,7 +383,7 @@ video {
             </div>
         </div>
 
-        <!-- 🌟 ส่วนวิดีโอของฉัน (รวมวิดีโอทั้ง 2 ไฟล์ไว้ในกล่องเดียว) -->
+        <!-- 🌟 ส่วนวิดีโอของฉัน -->
         <div class="info-card">
             <h2><i class="fa-solid fa-video"></i> วิดีโอของฉัน</h2>
             <div class="video-grid">
@@ -419,20 +419,25 @@ video {
 
 </div>
 
-<!-- 🌟 สคริปต์ดึงข้อมูลสภาพอากาศ และนับจำนวนผู้เข้าชม -->
+<!-- 🌟 สคริปต์แก้ไขปัญหานับจำนวนคนดูใหม่เริ่มจาก 1 -->
 <script>
-// 1. นับจำนวนคนเข้าชมเว็บ (นับจริงด้วย localStorage)
 function updateVisitorCount() {
-    let count = localStorage.getItem('page_views');
+    // ลบคีย์เดิมที่เคยเก็บบันทึกไว้
+    localStorage.removeItem('page_views');
+
+    // ใช้ชื่อคีย์ใหม่เพื่อป้องกันเบราว์เซอร์ดึงค่าเก่าขึ้นมาอีก
+    let count = localStorage.getItem('my_visitor_count');
+    
     if (!count) {
-        count = 100; // ค่าเริ่มต้น
+        count = 0; // เริ่มนับจาก 0
     }
-    count = parseInt(count) + 1;
-    localStorage.setItem('page_views', count);
+    
+    count = parseInt(count) + 1; // +1 ทุกครั้งที่เปิดหน้า
+    localStorage.setItem('my_visitor_count', count);
+    
     document.getElementById('visitor-count').innerText = count.toLocaleString() + ' คน';
 }
 
-// 2. ดึงข้อมูลสภาพอากาศจริงของเชียงใหม่ผ่าน API
 async function fetchWeather() {
     try {
         const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=18.7904&longitude=98.9847&current_weather=true');
@@ -444,7 +449,6 @@ async function fetchWeather() {
     }
 }
 
-// เรียกใช้งานฟังก์ชันเมื่อโหลดหน้าเว็บ
 window.onload = function() {
     updateVisitorCount();
     fetchWeather();
